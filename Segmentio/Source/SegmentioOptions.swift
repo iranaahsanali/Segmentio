@@ -49,17 +49,14 @@ public struct SegmentioState {
     var backgroundColor: UIColor
     var titleFont: UIFont
     var titleTextColor: UIColor
-    var titleAlpha: CGFloat
     
     public init(
         backgroundColor: UIColor = .clear,
         titleFont: UIFont = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize),
-        titleTextColor: UIColor = .black,
-        titleAlpha: CGFloat = 1) {
+        titleTextColor: UIColor = .black) {
         self.backgroundColor = backgroundColor
         self.titleFont = titleFont
         self.titleTextColor = titleTextColor
-        self.titleAlpha = titleAlpha
     }
     
 }
@@ -173,9 +170,11 @@ public enum SegmentioStyle: String {
     public var layoutMargins: CGFloat {
         let defaultLayoutMargins: CGFloat = 8.0
         switch self {
-        case .onlyLabel, .imageAfterLabel, .imageBeforeLabel, .imageOverLabel, .imageUnderLabel:
+        case .onlyLabel, .imageAfterLabel, .imageBeforeLabel, .imageUnderLabel:
             return 4 * defaultLayoutMargins
         case .onlyImage:
+            return 2 * defaultLayoutMargins
+        case .imageOverLabel:
             return 2 * defaultLayoutMargins
         }
     }

@@ -141,7 +141,6 @@ class SegmentioCell: UICollectionViewCell {
         if style.isWithText() {
             segmentTitleLabel?.textColor = selected ? selectedState.titleTextColor : defaultState.titleTextColor
             segmentTitleLabel?.font = selected ? selectedState.titleFont : defaultState.titleFont
-            segmentTitleLabel?.alpha = selected ? selectedState.titleAlpha : defaultState.titleAlpha
             segmentTitleLabel?.minimumScaleFactor = 0.5
             segmentTitleLabel?.adjustsFontSizeToFitWidth = true
         }
@@ -182,7 +181,7 @@ class SegmentioCell: UICollectionViewCell {
 
     // MARK: - Private functions
     
-    private func setupContainerConstraints() {
+    private func  setupContainerConstraints() {
         guard let segmentTitleLabel = segmentTitleLabel, let containerView = containerView else {
             return
         }
@@ -196,29 +195,20 @@ class SegmentioCell: UICollectionViewCell {
             multiplier: 1,
             constant: 0
         )
-        let segmentTitleLabelTrailingConstraint = NSLayoutConstraint(
+        
+        let segmentTitleLabelHorizontalCenterConstraint = NSLayoutConstraint(
             item: segmentTitleLabel,
-            attribute: .trailing,
+            attribute: .centerX,
             relatedBy: .equal,
             toItem: containerView,
-            attribute: .trailingMargin,
-            multiplier: 1.0,
-            constant: 0
-        )
-        let segmentTitleLabelLeadingConstraint = NSLayoutConstraint(
-            item: segmentTitleLabel,
-            attribute: .leading,
-            relatedBy: .equal,
-            toItem: containerView,
-            attribute: .leadingMargin,
-            multiplier: 1.0,
+            attribute: .centerX,
+            multiplier: 1,
             constant: 0
         )
         
         addConstraints([
-            segmentTitleLabelTrailingConstraint,
-            segmentTitleLabelVerticalCenterConstraint,
-            segmentTitleLabelLeadingConstraint
+            segmentTitleLabelHorizontalCenterConstraint,
+            segmentTitleLabelVerticalCenterConstraint
         ])
     }
     
@@ -230,54 +220,29 @@ class SegmentioCell: UICollectionViewCell {
             return
         }
         
-        let segmentImageViewTopConstraint =
-            NSLayoutConstraint(
-                item: segmentImageView,
-                attribute: .top,
-                relatedBy: .equal,
-                toItem: imageContainerView,
-                attribute: .top,
-                multiplier: 1,
-                constant: 0
+        let segmentImageViewVerticalCenterConstraint = NSLayoutConstraint(
+            item: segmentImageView,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: containerView,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0
         )
         
-        let segmentImageViewLeadingConstraint =
-            NSLayoutConstraint(
-                item: segmentImageView,
-                attribute: .leading,
-                relatedBy: .equal,
-                toItem: imageContainerView,
-                attribute: .leading,
-                multiplier: 1,
-                constant: 0
+        let segmentImageViewHorizontalCenterConstraint = NSLayoutConstraint(
+            item: segmentImageView,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: containerView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0
         )
         
-        let segmentImageViewTrailingConstraint =
-            NSLayoutConstraint(
-                item: segmentImageView,
-                attribute: .trailing,
-                relatedBy: .equal,
-                toItem: imageContainerView,
-                attribute: .trailing,
-                multiplier: 1,
-                constant: 0
-        )
-        
-        let segmentImageViewBottomConstraint =
-            NSLayoutConstraint(
-                item: segmentImageView,
-                attribute: .bottom,
-                relatedBy: .equal,
-                toItem: imageContainerView,
-                attribute: .bottom,
-                multiplier: 1,
-                constant: 0
-        )
         addConstraints([
-            segmentImageViewBottomConstraint,
-            segmentImageViewTrailingConstraint,
-            segmentImageViewLeadingConstraint,
-            segmentImageViewTopConstraint
+            segmentImageViewHorizontalCenterConstraint,
+            segmentImageViewVerticalCenterConstraint
             ])
     }
 
