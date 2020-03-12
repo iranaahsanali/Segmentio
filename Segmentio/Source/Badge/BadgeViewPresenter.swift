@@ -38,19 +38,19 @@ class BadgeViewPresenter {
     }
     
     fileprivate func setupBadgeConstraints(_ badgeView: BadgeWithCounterView, counterValue: Int) {
-        var constraintConstant:CGFloat = -5.0
+        var constraintConstant:CGFloat = 0
         if counterValue > 9 {
-            constraintConstant = -10.0
+            constraintConstant = 0
         }
         let segmentTitleLabelHorizontalCenterConstraint =
             NSLayoutConstraint(
                 item: badgeView,
-                attribute: .top,
+                attribute: .centerY,
                 relatedBy: .equal,
                 toItem: badgeView.superview,
-                attribute: .top,
+                attribute: .centerY,
                 multiplier: 1,
-                constant: 6.0
+                constant: 0
         )
         
         let segmentTitleLabelVerticalCenterConstraint =
@@ -61,7 +61,7 @@ class BadgeViewPresenter {
                 toItem: badgeView.superview,
                 attribute: .trailing,
                 multiplier: 1,
-                constant: constraintConstant
+                constant: -17
         )
         segmentTitleLabelHorizontalCenterConstraint.isActive = true
         segmentTitleLabelVerticalCenterConstraint.isActive = true
